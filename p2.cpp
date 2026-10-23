@@ -53,7 +53,7 @@ int main()
    }
 
    // loop
-   while (lb.getTime() < 10000)
+      while (lb.getTime() < 10000)
    {
       int currTime = lb.getTime();
       int size = lb.getSize();
@@ -70,13 +70,10 @@ int main()
          cout << endl;
 
          // then give it a new request
-         if (!lb.isRequestQueueEmpty())
-         {
-            webarray[currTime % NUM_SERVERS].addRequest(lb.getRequest(), currTime);
-         }
+         webarray[currTime % NUM_SERVERS].addRequest(lb.getRequest(), currTime);
       }
       // every random set of time, get a new request
-      if (rand() % 20 == 0)
+      if (rand() % 10 == 0)
       {
          request r = createRandomRequest();
          lb.addRequest(r);

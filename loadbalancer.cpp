@@ -18,14 +18,19 @@ void loadbalancer::incTime()
 void loadbalancer::addRequest(request r)
 {
    requestQueue.push(r);
+   incTime();
 }
 
 request loadbalancer::getRequest()
 {
-   //request r = requestQueue.front(); // queue
-   request r = requestQueue.top(); // priority_queue and stack
-   requestQueue.pop();
-   return r;
+   incTime();
+   if (!requestQueue.empty())
+   {
+      request r = requestQueue.front(); // queue
+      //request r = requestQueue.top(); // priority_queue and stack
+      requestQueue.pop();
+      return r;
+   }
 }
 
 bool loadbalancer::isRequestQueueEmpty()
